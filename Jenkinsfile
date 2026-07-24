@@ -8,10 +8,16 @@ pipeline {
                 echo 'Successfuly downloaded the code from Github'
             }
         }
-        stage('Test pipeline') {
+        stage('Check Docker engine') {
             steps {
-                echo 'Hello World!'
-                sh 'ls -la'
+                echo 'Checking Jenkins connection with Docker'
+                sh 'docker --version'
+            }
+        }
+        stage('Build API image') {
+            steps {
+                echo 'Building the FastAPI docker image'
+                sh 'docker build -t fastapi-backend .'
             }
         }
     }
