@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 checkout scm
-                echo S'uccessfuly downloaded the code from Github'
+                echo 'Successfuly downloaded the code from Github'
             }
         }
         stage('Test pipeline') {
