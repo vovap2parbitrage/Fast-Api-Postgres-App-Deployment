@@ -25,8 +25,8 @@ pipeline {
                 echo 'Logging into Docker Hub and pushing the image...'
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
-                    sh 'docker tag fastapi-backend $DOCKER_USER/fastapi-backend:1.0'
-                    sh 'docker push $DOCKER_USER/fastapi-backend:1.0'
+                    sh 'docker tag fastapi-backend $DOCKER_USER/fastapi-backend:$BUILD_NUMBER'
+                    sh 'docker push $DOCKER_USER/fastapi-backend:$BUILD_NUMBER'
                 }
             }
         }
@@ -40,8 +40,8 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
-                    sh 'docker tag vue-frontend $DOCKER_USER/vue-frontend:1.0'
-                    sh 'docker push $DOCKER_USER/vue-frontend:1.0'
+                    sh 'docker tag vue-frontend $DOCKER_USER/vue-frontend:$BUILD_NUMBER'
+                    sh 'docker push $DOCKER_USER/vue-frontend:$BUILD_NUMBER'
                 }
             }
         }
