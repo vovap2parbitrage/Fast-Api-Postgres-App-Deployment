@@ -5,18 +5,17 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 checkout scm
-                echo 'Successfuly downloaded the code from Github'
+                echo 'Source code checked out successfully'
             }
         }
-        stage('Check Docker engine') {
+        stage('Check Docker Engine') {
             steps {
-                echo 'Checking Jenkins connection with Docker'
+                echo 'Checking Docker Engine version'
                 sh 'docker --version'
             }
         }
-        stage('Build API image') {
+        stage('Build Image') {
             steps {
-                echo 'Building the FastAPI docker image'
                 sh 'docker build -t fastapi-backend -f ./src/Dockerfile .'
             }
         }
