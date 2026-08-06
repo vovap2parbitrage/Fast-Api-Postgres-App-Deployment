@@ -22,7 +22,7 @@ pipeline {
         stage('Push Backend Image') {
             steps {
                 echo 'Logging into Docker Hub and pushing the image...'
-                withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PWD')]) {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
                     sh 'docker tag fastapi-backend $DOCKER_USER/fastapi:1.0'
                     sh 'docker push $DOCKER_USER/fastapi:1.0'
