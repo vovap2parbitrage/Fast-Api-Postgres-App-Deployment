@@ -43,6 +43,8 @@ terraform.rc
 # Uncomment the line below if you want to ignore planout files.
 # planout
 
+.terraform.lock.hcl
+
 .history
 .vscode
 .idea
