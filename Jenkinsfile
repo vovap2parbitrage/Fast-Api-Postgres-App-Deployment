@@ -58,12 +58,12 @@ pipeline {
                         def EC2_IP = sh(script: 'terraform output -raw instance_ip', returnStdout: true).trim()
                         
                         sshagent(credentials: ['ec2-ssh-key']) {
-                            withCredentials([usernamePassword(credentialsId: dockerhub-credentials, usernameVariable: 'DOCKER_USER', passwordVariable)]) {
+                            withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                                 sh """
                                     scp -o StrictHostKeyChecking=no ../docker-compose.yml ubuntu@${EC2_IP}:/home/ubuntu/docker-compose.yml
                                     ssh -o StrictHostKeyChecking=no ubuntu@${EC2_IP} '
                                         export APP_VERSION=${BUILD_NUMBER}
-                                        exprot DOCKER_USER=${DOCKER_USER}
+                                        export DOCKER_USER=${DOCKER_USER}
 
                                         docker compose pull
                                         docker compose up -d
