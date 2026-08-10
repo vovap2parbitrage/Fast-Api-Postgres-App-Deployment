@@ -87,7 +87,7 @@ data "aws_ami" "ubuntu" {
 resource "aws_key_pair" "def_key" {
   key_name = "def-key"
 
-  public_key = file("~/.ssh/def-key.pub")
+  public_key = file("${path.module}/def-key.pub")
 }
 
 resource "aws_instance" "public_instance" {
