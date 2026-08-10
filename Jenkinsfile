@@ -13,7 +13,7 @@ pipeline {
                 dir('terraform') {
                     withCredentials([
                         string(credentialsId: 'aws-access-key-id', variable: 'AWS_ACCESS_KEY_ID'),
-                        string(credentialsId: 'aws-secret-access-key', variable: 'AWSS_SECRET_ACCESS_KEY')
+                        string(credentialsId: 'aws-secret-access-key', variable: 'AWS_SECRET_ACCESS_KEY')
                     ]) {
                         echo 'Running Terraform via Makefile...'
                         sh 'make'
