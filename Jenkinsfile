@@ -29,7 +29,7 @@ pipeline {
         }
         stage('Build Backend Image') {
             steps {
-                sh 'docker build -t fastapi-backend -f ./src/Dockerfile .'
+                sh 'docker build -t fastapi-backend ./src'
                 echo 'The backend image has been successfully created'
             }
         }
