@@ -63,6 +63,8 @@ pipeline {
                 script {
                     dir('terraform') {
                         def EC2_IP = sh(script: 'terraform output -raw instance_ip', returnStdout: true).trim()
+
+                        sleep(time: 30, unit: 'SECONDS')
                         
                         sshagent(credentials: ['ec2-ssh-key']) {
                             withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
