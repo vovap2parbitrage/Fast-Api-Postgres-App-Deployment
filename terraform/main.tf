@@ -69,7 +69,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_http" {
 }
 
 resource "aws_vpc_security_group_ingress_rule" "allow_vue" {
-  security_group_id = aws_security_group.public_sg
+  security_group_id = aws_security_group.public_sg.id
   cidr_ipv4 = "0.0.0.0/0"
   from_port = 5173
   to_port = 5173
@@ -77,7 +77,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_vue" {
 }
 
 resource "aws_vpc_security_group_ingress_rule" "allow_fastapi" {
-  security_group_id = aws_security_group.public_sg
+  security_group_id = aws_security_group.public_sg.id
   cidr_ipv4 = "0.0.0.0/0"
   from_port = 8002
   to_port = 8002
