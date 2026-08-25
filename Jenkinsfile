@@ -16,7 +16,7 @@ pipeline {
                         string(credentialsId: 'aws-secret-access-key', variable: 'AWS_SECRET_ACCESS_KEY')
                     ]) {
                         echo 'Running Terraform via Makefile...'
-                        sh 'make'
+                        sh 'terraform destroy --auto-approve'
                     }
                 }
             }
