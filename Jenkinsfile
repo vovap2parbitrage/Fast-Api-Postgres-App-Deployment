@@ -73,6 +73,7 @@ pipeline {
                                     ssh -o StrictHostKeyChecking=no ubuntu@${EC2_IP} '
                                         export APP_VERSION=${BUILD_NUMBER}
                                         export DOCKER_USER=${DOCKER_USER}
+                                        export EC2_IP=${EC2_IP}
 
                                         docker compose pull
                                         docker compose up -d
